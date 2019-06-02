@@ -1,8 +1,8 @@
 
 ## Pre-requisites
 
-* A Route53 ex: raj.ninja
-* A S3 Bucket to manage cluster state ex: rak-teste-muito-louco
+* A Route53 ex: `raj.ninja`
+* A S3 Bucket to manage cluster state ex: `raj-teste-muito-louco`
 
 ## Permissions
 
@@ -164,4 +164,79 @@ kops update cluster --state s3://raj-teste-muito-louco --yes
 ```bash
 kops rolling-update cluster --state s3://raj-teste-muito-louco --yes
 ```
+
+### Setup Helm on Master from Script
+
+* Install Helm from script
+```
+curl -L https://git.io/get_helm.sh | bash
+helm init
+```
+
+* Setup Tiller
+```
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+```
+
+### Enable Auto Scale on Nodes
+
+* Edit nodes specs
+
+```bash
+kops edit ig nodes --state s3://raj-teste-muito-louco
+```
+* And add this specs changing the cluster name
+
+```yml
+spec:
+  cloudLabels:
+    k8s.io/cluster-autoscaler/enabled: ""
+    k8s.io/cluster-autoscaler/node-template/label: ""
+    kubernetes.io/cluster/<CLUSTER_NAME>: owned
+
+```
+
+* Edit cluster specs
+
+```bash
+kops edit cluster --state s3://raj-teste-muito-louco
+```
+
+And add this policies
+
+```yml
+spec:
+  additionalPolicies:
+    node: |
+      [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "autoscaling:DescribeAutoScalingGroups",
+            "autoscaling:DescribeAutoScalingInstances",
+            "autoscaling:SetDesiredCapacity",
+            "autoscaling:DescribeLaunchConfigurations",
+            "autoscaling:DescribeTags",
+            "autoscaling:TerminateInstanceInAutoScalingGroup"
+          ],
+          "Resource": ["*"]
+        }
+      ]
+```
+
+* Update cluster
+
+```bash
+kops update cluster --state s3://raj-teste-muito-louco --yes
+```
+
+```bash
+kops rolling-update cluster --state s3://raj-teste-muito-louco --yes
+```
+
+
+#### Setup Helm on Master
+
 
