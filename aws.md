@@ -40,12 +40,12 @@ kops create cluster \
     --state s3://raj-teste-muito-louco
 ```
 
-* `node-count` :
-* `zones` :
-* `networking` :
-* `name` :
-* `cloud` :
-* `state` :
+* `node-count` : Quantity of nodes inside cluster
+* `zones` : Zones separated by commas
+* `networking` : Networking plugin. Ex: calico, canal, flannel, romana, cilium, weave
+* `name` : Cluster DNS
+* `cloud` : Cloud provider
+* `state` : S3 Bucket
 
 
 ## Apply Cluster Specs
