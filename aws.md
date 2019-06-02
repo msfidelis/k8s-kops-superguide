@@ -7,7 +7,7 @@
 
 * [AWS Permissions](#Permissions)
 
-* [Creating a Simple Cluster](#Create a cluster especification)
+* [Creating a Simple Cluster](#Create-a-cluster-especification)
 
 
 ## Pre-requisites
