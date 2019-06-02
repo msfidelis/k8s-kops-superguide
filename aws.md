@@ -134,7 +134,7 @@ ip-172-20-96-100.ec2.internal   Ready    node     4m1s    v1.12.7
 ip-172-20-96-163.ec2.internal   Ready    master   5m16s   v1.12.7
 ```
 
-![Image of Master Nodes](.github/master-node-count.png)
+![Image of Master Nodes](.github/images/master-node-count.png)
 
 ### Using a custom public key
 
@@ -153,7 +153,7 @@ kops create secret \
 kops edit instancegroups nodes --state s3://raj-teste-muito-louco
 ```
 
-![Image of Spots](.github/spot-edit.png)
+![Image of Spots](.github/images/spot-edit.png)
 
 ```bash
 kops update cluster --state s3://raj-teste-muito-louco --yes
