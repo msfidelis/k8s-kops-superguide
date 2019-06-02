@@ -53,6 +53,15 @@ ssh admin@ip-do-master
 kubectl get nodes
 ```
 
+```
+NAME                            STATUS   ROLES    AGE     VERSION
+ip-172-20-51-235.ec2.internal   Ready    master   7m30s   v1.12.7
+ip-172-20-61-17.ec2.internal    Ready    node     5m59s   v1.12.7
+ip-172-20-79-42.ec2.internal    Ready    node     6m1s    v1.12.7
+ip-172-20-97-13.ec2.internal    Ready    node     5m22s   v1.12.7
+```
+
+
 ### Default Public Key
 
 ```bash
@@ -80,6 +89,7 @@ kops create cluster \
     --master-size m4.large \
     --node-size c4.large \
     --api-loadbalancer-type public \
+    --master-count 3 \
     --node-count 3 \
     --zones us-east-1a,us-east-1b,us-east-1c \
     --networking weave \
@@ -88,3 +98,9 @@ kops create cluster \
     --state s3://raj-teste-muito-louco \
     --yes
 ```
+
+* `master-size` :
+* `node-size` :
+* `api-loadbalancer-type` :
+* `master-count` :
+* `node-count` :
