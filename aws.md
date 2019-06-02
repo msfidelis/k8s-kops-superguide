@@ -40,6 +40,24 @@ kops validate cluster cluster.raj.ninja \
     --state s3://raj-teste-muito-louco
 ```
 
+```
+Validating cluster cluster.raj.ninja
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-us-east-1a	Master	m4.large	1	1	us-east-1a
+nodes			Node	c4.large	3	3	us-east-1a,us-east-1b,us-east-1c
+
+NODE STATUS
+NAME				ROLE	READY
+ip-172-20-37-240.ec2.internal	master	True
+ip-172-20-63-253.ec2.internal	node	True
+ip-172-20-82-127.ec2.internal	node	True
+ip-172-20-96-100.ec2.internal	node	True
+
+Your cluster cluster.raj.ninja is ready
+```
+
 ## How to Connect on Master
 
 by default, the master and nodes uses a Debian. The default user on VM's is `admin`
@@ -99,8 +117,18 @@ kops create cluster \
     --yes
 ```
 
-* `master-size` :
-* `node-size` :
-* `master-count` :
-* `node-count` :
-* `api-loadbalancer-type` :
+* `master-size` : Master instance class.
+* `node-size` : Nodes instance class
+* `master-count` : quantity of master on cluster
+* `node-count` : quantity of nodes on cluster
+* `api-loadbalancer-type` : API Management, on `public` or `private`
+
+
+```
+ip-172-20-37-240.ec2.internal   Ready    master   5m12s   v1.12.7
+ip-172-20-63-253.ec2.internal   Ready    node     4m15s   v1.12.7
+ip-172-20-82-127.ec2.internal   Ready    node     4m33s   v1.12.7
+ip-172-20-84-135.ec2.internal   Ready    master   5m14s   v1.12.7
+ip-172-20-96-100.ec2.internal   Ready    node     4m1s    v1.12.7
+ip-172-20-96-163.ec2.internal   Ready    master   5m16s   v1.12.7
+```
