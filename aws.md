@@ -2,6 +2,18 @@
 
 ssh-keygen -t rsa -b 4096
 
+## Permissions
+
+You will need a EC2 Role, or User credentials with with this permissions
+
+```
+AmazonEC2FullAccess
+AmazonRoute53FullAccess
+AmazonS3FullAccess
+IAMFullAccess
+AmazonVPCFullAccess
+```
+
 
 ## Create a cluster especification
 
@@ -79,17 +91,6 @@ ip-172-20-79-42.ec2.internal    Ready    node     6m1s    v1.12.7
 ip-172-20-97-13.ec2.internal    Ready    node     5m22s   v1.12.7
 ```
 
-
-### Default Public Key
-
-```bash
-kops create secret \
-    --name cluster.raj.ninja \
-    sshpublickey admin \
-    -i ~/.ssh/id_rsa.pub \
-    --state s3://raj-teste-muito-louco
-```
-
 ## Delete Cluster
 
 ```bash
@@ -132,3 +133,33 @@ ip-172-20-84-135.ec2.internal   Ready    master   5m14s   v1.12.7
 ip-172-20-96-100.ec2.internal   Ready    node     4m1s    v1.12.7
 ip-172-20-96-163.ec2.internal   Ready    master   5m16s   v1.12.7
 ```
+
+![Image of Master Nodes](.github/master-node-count.png)
+
+### Using a custom public key
+
+```bash
+kops create secret \
+    --name cluster.raj.ninja \
+    sshpublickey admin \
+    -i ~/.ssh/id_rsa.pub \
+    --state s3://raj-teste-muito-louco
+```
+
+
+### Using Spot Instances on Nodes
+
+```bash
+kops edit instancegroups nodes --state s3://raj-teste-muito-louco
+```
+
+![Image of Spots](.github/spot-edit.png)
+
+```bash
+kops update cluster --state s3://raj-teste-muito-louco --yes
+```
+
+```bash
+kops rolling-update cluster --state s3://raj-teste-muito-louco --yes
+```
+
