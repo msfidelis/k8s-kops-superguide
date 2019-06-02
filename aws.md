@@ -17,6 +17,12 @@
 
 * [Another Options to Create Cluster](#Another-Options)
 
+* [Using Spots](#Using-Spot-Instances-on-Nodes)
+
+* [Setup Helm](#Setup-Helm-on-Master-from-Script)
+
+* [Setup Auto Scale on Nodes](#Enable-Auto-Scale-on-Nodes)
+
 ## Pre-requisites
 
 * A Route53 ex: `raj.ninja`
@@ -127,7 +133,7 @@ kops delete cluster \
 kops create cluster \
     --master-size m4.large \
     --node-size c4.large \
-    --master-count 3 \
+    --master-count 1 \
     --node-count 3 \
     --api-loadbalancer-type public \
     --zones us-east-1a,us-east-1b,us-east-1c \
