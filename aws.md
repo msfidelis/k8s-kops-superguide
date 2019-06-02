@@ -1,6 +1,8 @@
 
+## Pre-requisites
 
-ssh-keygen -t rsa -b 4096
+* A Route53 ex: raj.ninja
+* A S3 Bucket to manage cluster state ex: rak-teste-muito-louco
 
 ## Permissions
 
