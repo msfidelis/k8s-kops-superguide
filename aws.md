@@ -88,9 +88,9 @@ kops delete cluster \
 kops create cluster \
     --master-size m4.large \
     --node-size c4.large \
-    --api-loadbalancer-type public \
     --master-count 3 \
     --node-count 3 \
+    --api-loadbalancer-type public \
     --zones us-east-1a,us-east-1b,us-east-1c \
     --networking weave \
     --name cluster.raj.ninja \
@@ -101,6 +101,6 @@ kops create cluster \
 
 * `master-size` :
 * `node-size` :
-* `api-loadbalancer-type` :
 * `master-count` :
 * `node-count` :
+* `api-loadbalancer-type` :
