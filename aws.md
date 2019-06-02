@@ -7,8 +7,15 @@
 
 * [AWS Permissions](#Permissions)
 
-* [Creating a Simple Cluster](#Create-a-cluster-especification)
+* [Creating a Simple Cluster Specs](#Create-a-cluster-especification)
 
+* [Apply and Create Cluster Specs](#Apply-cluster-specs)
+
+* [Validating Cluster](#Validate-cluster)
+
+* [Delete Cluster](#Delete-Cluster)
+
+* [Another Options to Create Cluster](#Another-Options)
 
 ## Pre-requisites
 
